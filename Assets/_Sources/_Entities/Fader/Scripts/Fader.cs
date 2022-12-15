@@ -11,7 +11,7 @@ public class Fader : MonoBehaviour
     [SerializeField] private Renderer _blackScreenRenderer;
     [SerializeField] private Renderer _vignetteRenderer;
     [SerializeField] private Renderer _tunnelViewRenderer;
-    [SerializeField] private Loading _loading;
+    // [SerializeField] private Loading _loading;
     [SerializeField] private CanvasGroup _hud;
 
     private Material _blackScreen;
@@ -95,7 +95,7 @@ public class Fader : MonoBehaviour
         if (timeToChange != null)
             time = (float)timeToChange;
         
-        _loading.StartAnimation();
+        // _loading.StartAnimation();
     }
     
     public void HideLoadingTextSlow(float? timeToChange = null)
@@ -105,17 +105,17 @@ public class Fader : MonoBehaviour
         if (timeToChange != null)
             time = (float)timeToChange;
         
-        _loading.StopAnimation();
+        // _loading.StopAnimation();
     }
 
     public void TurnOnLoadingText()
     {
-        _loading.StartAnimationFast();
+        // _loading.StartAnimationFast();
     }
     
     public void TurnOffLoadingText()
     {
-        _loading.StopAnimationFast();
+        // _loading.StopAnimationFast();
     }
 
     #endregion

@@ -59,7 +59,7 @@ public class VRInputSystem : MonoBehaviour
     private float _currentLeftSecondaryValue;
     private bool _isLeftSecondaryPressed;
 
-    public Vector2 LeftJoystick;
+    [HideInInspector] public Vector2 LeftJoystick;
 
     public Action OnLeftTriggerPressed;
     public Action OnLeftTriggerUnpressed;
@@ -82,7 +82,7 @@ public class VRInputSystem : MonoBehaviour
     private float _currentRightSecondaryValue;
     private bool _isRightSecondaryPressed;
     
-    public Vector2 RightJoystick;
+    [HideInInspector] public Vector2 RightJoystick;
     
     public Action OnRightTriggerPressed;
     public Action OnRightTriggerUnpressed;
