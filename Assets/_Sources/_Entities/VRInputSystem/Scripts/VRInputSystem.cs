@@ -21,9 +21,10 @@ public enum ControllerButton
 public class VRInputSystem : MonoBehaviour
 {
     [SerializeField] private InputActionAsset _inputActionAsset;
+    
     [Space] [Header("Current rig controllers")]
-    [SerializeField] private ActionBasedController _leftController;
-    [SerializeField] private ActionBasedController _rightController;
+    public ActionBasedController LeftController;
+    public ActionBasedController RightController;
 
     private List<ActionBasedController> _controllers = new List<ActionBasedController>();
 
@@ -48,16 +49,16 @@ public class VRInputSystem : MonoBehaviour
     public InputAction RightJoystickAction { get; private set; }
 
     //Left controller
-    private float _currentLeftTriggerValue;
-    private bool _isLeftTriggerPressed;
-    private float _currentLeftGripValue;
-    private bool _isLeftGripPressed;
-    private float _currentLeftMenuValue;
-    private bool _isLeftMenuPressed;
-    private float _currentLeftPrimaryValue;
-    private bool _isLeftPrimaryPressed;
-    private float _currentLeftSecondaryValue;
-    private bool _isLeftSecondaryPressed;
+    [HideInInspector] public float CurrentLeftTriggerValue;
+    [HideInInspector] public bool IsLeftTriggerPressed;
+    [HideInInspector] public float CurrentLeftGripValue;
+    [HideInInspector] public bool IsLeftGripPressed;
+    [HideInInspector] public float CurrentLeftMenuValue;
+    [HideInInspector] public bool IsLeftMenuPressed;
+    [HideInInspector] public float CurrentLeftPrimaryValue;
+    [HideInInspector] public bool IsLeftPrimaryPressed;
+    [HideInInspector] public float CurrentLeftSecondaryValue;
+    [HideInInspector] public bool IsLeftSecondaryPressed;
 
     [HideInInspector] public Vector2 LeftJoystick;
 
@@ -73,14 +74,14 @@ public class VRInputSystem : MonoBehaviour
     public Action OnLeftSecondaryUnpressed;
 
     //Right controller
-    private float _currentRightTriggerValue;
-    private bool _isRightTriggerPressed;
-    private float _currentRightGripValue;
-    private bool _isRightGripPressed;
-    private float _currentRightPrimaryValue;
-    private bool _isRightPrimaryPressed;
-    private float _currentRightSecondaryValue;
-    private bool _isRightSecondaryPressed;
+    [HideInInspector] public float CurrentRightTriggerValue;
+    [HideInInspector] public bool IsRightTriggerPressed;
+    [HideInInspector] public float CurrentRightGripValue;
+    [HideInInspector] public bool IsRightGripPressed;
+    [HideInInspector] public float CurrentRightPrimaryValue;
+    [HideInInspector] public bool IsRightPrimaryPressed;
+    [HideInInspector] public float CurrentRightSecondaryValue;
+    [HideInInspector] public bool IsRightSecondaryPressed;
     
     [HideInInspector] public Vector2 RightJoystick;
     
@@ -119,14 +120,14 @@ public class VRInputSystem : MonoBehaviour
         _extendedButtonsMap = _inputActionAsset.FindActionMap("XRI Extended Buttons");
         
         ButtonLeftTrigger = _leftControllerMap.FindAction("Activate");
-        ButtonLeftGrip = _leftControllerMap.FindAction("Select");
+        ButtonLeftGrip = _leftControllerMap.FindAction("Select Value");
         ButtonLeftMenu = _extendedButtonsMap.FindAction("Left Menu Button");
         ButtonLeftPrimary = _extendedButtonsMap.FindAction("Left Primary Button");
         ButtonLeftSecondary = _extendedButtonsMap.FindAction("Left Secondary Button");
         LeftJoystickAction = _extendedButtonsMap.FindAction("Left Joystick");
         
         ButtonRightTrigger = _rightControllerMap.FindAction("Activate");
-        ButtonRightGrip = _rightControllerMap.FindAction("Select");
+        ButtonRightGrip = _rightControllerMap.FindAction("Select Value");
         ButtonRightPrimary = _extendedButtonsMap.FindAction("Right Primary Button");
         ButtonRightSecondary = _extendedButtonsMap.FindAction("Right Secondary Button");
         RightJoystickAction = _extendedButtonsMap.FindAction("Right Joystick");
@@ -147,23 +148,23 @@ public class VRInputSystem : MonoBehaviour
     private void UpdateAndSendButtonsStates()
     {
         SendButtonState(ButtonLeftTrigger.ReadValue<float>(),
-            ref _currentLeftTriggerValue, OnLeftTriggerPressed, OnLeftTriggerUnpressed, ref _isLeftTriggerPressed);
+            ref CurrentLeftTriggerValue, OnLeftTriggerPressed, OnLeftTriggerUnpressed, ref IsLeftTriggerPressed);
         SendButtonState(ButtonRightTrigger.ReadValue<float>(),
-            ref _currentRightTriggerValue, OnRightTriggerPressed, OnRightTriggerUnpressed, ref _isRightTriggerPressed);
+            ref CurrentRightTriggerValue, OnRightTriggerPressed, OnRightTriggerUnpressed, ref IsRightTriggerPressed);
         SendButtonState(ButtonLeftGrip.ReadValue<float>(),
-            ref _currentLeftGripValue, OnLeftGripPressed, OnLeftGripUnpressed, ref _isLeftGripPressed);
+            ref CurrentLeftGripValue, OnLeftGripPressed, OnLeftGripUnpressed, ref IsLeftGripPressed);
         SendButtonState(ButtonRightGrip.ReadValue<float>(),
-            ref _currentRightGripValue, OnRightGripPressed, OnRightGripUnpressed, ref _isRightGripPressed);
+            ref CurrentRightGripValue, OnRightGripPressed, OnRightGripUnpressed, ref IsRightGripPressed);
         SendButtonState(ButtonLeftMenu.ReadValue<float>(),
-            ref _currentLeftMenuValue, OnLeftMenuPressed, OnLeftMenuUnpressed, ref _isLeftMenuPressed);
+            ref CurrentLeftMenuValue, OnLeftMenuPressed, OnLeftMenuUnpressed, ref IsLeftMenuPressed);
         SendButtonState(ButtonLeftPrimary.ReadValue<float>(),
-            ref _currentLeftPrimaryValue, OnLeftPrimaryPressed, OnLeftPrimaryUnpressed, ref _isLeftPrimaryPressed);
+            ref CurrentLeftPrimaryValue, OnLeftPrimaryPressed, OnLeftPrimaryUnpressed, ref IsLeftPrimaryPressed);
         SendButtonState(ButtonRightPrimary.ReadValue<float>(),
-            ref _currentRightPrimaryValue, OnRightPrimaryPressed, OnRightPrimaryUnpressed, ref _isRightPrimaryPressed);
+            ref CurrentRightPrimaryValue, OnRightPrimaryPressed, OnRightPrimaryUnpressed, ref IsRightPrimaryPressed);
         SendButtonState(ButtonLeftSecondary.ReadValue<float>(),
-            ref _currentLeftSecondaryValue, OnLeftSecondaryPressed, OnLeftSecondaryUnpressed, ref _isLeftSecondaryPressed);
+            ref CurrentLeftSecondaryValue, OnLeftSecondaryPressed, OnLeftSecondaryUnpressed, ref IsLeftSecondaryPressed);
         SendButtonState(ButtonRightSecondary.ReadValue<float>(),
-            ref _currentRightSecondaryValue, OnRightSecondaryPressed, OnRightSecondaryUnpressed, ref _isRightSecondaryPressed);
+            ref CurrentRightSecondaryValue, OnRightSecondaryPressed, OnRightSecondaryUnpressed, ref IsRightSecondaryPressed);
 
         LeftJoystick = LeftJoystickAction.ReadValue<Vector2>();
         RightJoystick = RightJoystickAction.ReadValue<Vector2>();
@@ -270,9 +271,9 @@ public class VRInputSystem : MonoBehaviour
         switch (controller)
         {
             case VRController.Left:
-                return _leftController;
+                return LeftController;
             case VRController.Right:
-                return _rightController;
+                return RightController;
             default:
                 return null;
         }
