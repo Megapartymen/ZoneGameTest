@@ -54,7 +54,7 @@ public class HandController : MonoBehaviour
         {
             IsReadyToGrab = true;
             _animator.SetBool("Hover", true);
-            _controller = interactable.GetComponent<InteractableLogic>().Controller;
+            // _controller = interactable.GetComponent<InteractableLogic>().Controller;
         }
     }
     
@@ -64,7 +64,7 @@ public class HandController : MonoBehaviour
         {
             IsReadyToGrab = false;
             _animator.SetBool("Hover", false);
-            _controller = null;
+            // _controller = null;
         }
     }
 }

@@ -1,0 +1,47 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DropSphereToBox : QuestTask
+{
+    [SerializeField] private Box _box;
+    [SerializeField] private Item _item;
+
+    private QuestSystem _questSystem;
+
+    private void Awake()
+    {
+        _questSystem = FindObjectOfType<QuestSystem>();
+    }
+
+    private void OnEnable()
+    {
+        _box.OnInBoxDropped += CheckItemInBox;
+    }
+
+    private void OnDisable()
+    {
+        _box.OnInBoxDropped += CheckItemInBox;
+    }
+
+    private void CheckItemInBox(Item item)
+    {
+        if (item.Name == _item.Name)
+        {
+            OnTaskCompleted?.Invoke(this);
+            Debug.Log("[QUEST SYSTEM] Task completed");
+        }
+    }
+    
+    public override void ActionTaskStart()
+    {
+        IsCompleted = false;
+    }
+
+    public override void ActionTaskEnd()
+    {
+        IsCompleted = true;
+        Award.GetAward();
+    }
+}
