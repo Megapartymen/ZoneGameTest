@@ -168,7 +168,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16520648}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.43, y: 0.1, z: 0.42}
@@ -185,8 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84afd8dccfa37b4986005ad5b5f0d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bottomCollider: {fileID: 0}
-  _volumeCollider: {fileID: 0}
 --- !u!1 &55390209
 GameObject:
   m_ObjectHideFlags: 0
@@ -5519,6 +5517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: MagicOrb
+  CurrentTridderCollider: {fileID: 0}
 --- !u!1 &182117824
 GameObject:
   m_ObjectHideFlags: 0
@@ -12467,7 +12466,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919203009}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.43, y: 0.1, z: 0.42}
@@ -12484,8 +12483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84afd8dccfa37b4986005ad5b5f0d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bottomCollider: {fileID: 0}
-  _volumeCollider: {fileID: 0}
 --- !u!1 &1956647174
 GameObject:
   m_ObjectHideFlags: 0
@@ -12953,7 +12950,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066192956}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.43, y: 0.1, z: 0.42}
@@ -12970,8 +12967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84afd8dccfa37b4986005ad5b5f0d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bottomCollider: {fileID: 0}
-  _volumeCollider: {fileID: 0}
 --- !u!1001 &982289530842841632
 PrefabInstance:
   m_ObjectHideFlags: 0

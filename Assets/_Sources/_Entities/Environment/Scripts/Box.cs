@@ -5,14 +5,11 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-    [SerializeField] private Collider _bottomCollider;
-    [SerializeField] private Collider _volumeCollider;
-    
     public Action<Item> OnInBoxDropped;
-    
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.TryGetComponent(out Item item))
+        if (collision.gameObject.TryGetComponent(out Item item))
             OnInBoxDropped?.Invoke(item);
     }
 }
