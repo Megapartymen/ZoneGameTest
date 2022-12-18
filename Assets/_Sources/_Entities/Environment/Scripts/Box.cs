@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    [SerializeField] private Collider _bottomCollider;
+    [SerializeField] private Collider _volumeCollider;
+    
     public Action<Item> OnInBoxDropped;
     
     private void OnTriggerEnter(Collider other)

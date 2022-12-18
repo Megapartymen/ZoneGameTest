@@ -17,8 +17,7 @@ public class Fader : MonoBehaviour
     private Material _blackScreen;
     private Material _vignette;
     private Material _tunnelView;
-
-    private bool _isColorReset;
+    
     private bool _isDominantFade;
 
     private void Awake()
@@ -31,11 +30,12 @@ public class Fader : MonoBehaviour
 
     private void Start()
     {
-        _isColorReset = false;
+        FadeOut();
     }
 
     private void ApplyStartFaderState()
     {
+        SetBlackScreen();
         SetVignette(0);
         DisableTunnelView();
     }
