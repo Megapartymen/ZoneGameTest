@@ -5,26 +5,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public enum HandState
-{
-    Idle,
-    Hover,
-    ReadyToGrab,
-    ReadyToPress,
-    Grab
-}
-
 public class HandController : MonoBehaviour
 {
     [SerializeField] private ActionBasedController _controller;
     [SerializeField] private Animator _animator;
     
     private VRInputSystem _vrInputSystem;
-
-    public HandState HandState;
-
+    
     public bool IsReadyToGrab;
     public bool Grab;
+    public bool IsReadyToPush;
 
     private void Awake()
     {
@@ -54,13 +44,12 @@ public class HandController : MonoBehaviour
         {
             IsReadyToGrab = true;
             _animator.SetBool("Hover", true);
+        }
 
-            // if (interactable.GetComponent<InteractableLogic>().Controller != null && _controller != interactable.GetComponent<InteractableLogic>().Controller)
-            // {
-            //     _animator.SetBool("Hover busy", true);
-            // }
-
-            // _controller = interactable.GetComponent<InteractableLogic>().Controller;
+        if (other.TryGetComponent(out PushableMarker pushableMarker))
+        {
+            IsReadyToPush = true;
+            _animator.SetBool("ReadyToPush", true);
         }
     }
     
@@ -70,7 +59,12 @@ public class HandController : MonoBehaviour
         {
             IsReadyToGrab = false;
             _animator.SetBool("Hover", false);
-            // _animator.SetBool("Hover busy", false);
+        }
+        
+        if (other.TryGetComponent(out PushableMarker pushableMarker))
+        {
+            IsReadyToPush = false;
+            _animator.SetBool("ReadyToPush", false);
         }
     }
 }

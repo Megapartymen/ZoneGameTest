@@ -14,6 +14,6 @@ public class AwardForceTeleport : TaskAward
 
     public override void GetAward()
     {
-        _forceTeleport.SetNewPlayerPosition(Vector3.zero);
+        _forceTeleport.SetNewPlayerPosition(new Vector3(0,0.2f,0));
     }
 }
