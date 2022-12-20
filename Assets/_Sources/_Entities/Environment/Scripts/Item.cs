@@ -35,4 +35,9 @@ public class Item : MonoBehaviour
             transform.position = _itemStateHandler.PocketParent.position;
         }
     }
+
+    public bool GetNearPocketStatus()
+    {
+        return _itemStateHandler.ItemPocketState == ItemPocketState.NearPocket;
+    }
 }

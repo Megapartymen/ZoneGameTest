@@ -4,16 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public enum PocketType
-{
-    Weapon,
-    Instruments
-}
-
 public class Pocket : MonoBehaviour
 {
-    public PocketType PocketType;
-    [Space]
     [SerializeField] protected Transform _crystalPocket;
     [SerializeField] protected Transform _pocketHUD;
     [SerializeField] protected TargetHUDPositionMover _targetPocketHUDposition;
@@ -32,6 +24,8 @@ public class Pocket : MonoBehaviour
     
     protected InventorySystem _inventorySystem;
     protected VRInputSystem _vrInputSystem;
+    protected Item _currentItem;
+    
     public bool IsOpen;
     
     public Action OnPocketOpen;
@@ -57,7 +51,12 @@ public class Pocket : MonoBehaviour
         _pocketHUD.position = Vector3.Lerp(_pocketHUD.position, _targetPocketHUDposition.transform.position, 5 * Time.deltaTime);
         _pocketHUD.LookAt(Camera.main.transform.position);
     }
-    
+
+    private void LateUpdate()
+    {
+        CheckItemIsNear();
+    }
+
     private void OnEnable()
     {
         _inventoryCrystal.OnCrystalTouched += SwitchPocket;
@@ -71,6 +70,11 @@ public class Pocket : MonoBehaviour
     public Transform GetSocket()
     {
         return _firstSocket;
+    }
+    
+    public void ClosePocketAfterGrab()
+    {
+        ClosePocket();
     }
     
     private void SwitchPocket()
@@ -89,6 +93,7 @@ public class Pocket : MonoBehaviour
     {
         OnPocketOpen?.Invoke();
         IsOpen = true;
+        _inventoryCrystal.CrystalShine.Play();
         _targetPocketHUDposition.Correction = _openCorrection;
         _pocketHUD.DOScale(_openScale, 0.5f);
     }
@@ -97,7 +102,26 @@ public class Pocket : MonoBehaviour
     {
         OnPocketClosed?.Invoke();
         IsOpen = false;
+        _inventoryCrystal.CrystalShine.Stop();
         _targetPocketHUDposition.Correction = _closedCorrection;
         _pocketHUD.DOScale(_closedScale, 0.5f);
+    }
+
+    private void CheckItemIsNear()
+    {
+        Debug.Log("CHECK ITEM");
+        
+        if (_currentItem == null)
+            return;
+        
+        Debug.Log("HAVE CURRENT ITEM");
+        
+        if (!_currentItem.GetNearPocketStatus())
+        {
+            Debug.Log("STOP EFFECT");
+            
+            _vacuumEffect.Stop();
+            _currentItem = null;
+        }
     }
 }

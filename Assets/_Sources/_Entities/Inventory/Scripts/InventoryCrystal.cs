@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class InventoryCrystal : MonoBehaviour
 {
-    public Action OnCrystalTouched;
+    public ParticleSystem CrystalShine;
     
+    public Action OnCrystalTouched;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out IndexFingerMarker indexFingerMarker))

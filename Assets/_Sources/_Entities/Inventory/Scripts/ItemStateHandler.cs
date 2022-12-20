@@ -112,7 +112,7 @@ public class ItemStateHandler : MonoBehaviour
 
     private void TryGetParent()
     {
-        if (IsNearPocket && _isDropped)
+        if (IsNearPocket && _isDropped && CurrentPocket != null)
         {
             PocketParent = CurrentPocket.GetSocket();
 
@@ -125,6 +125,10 @@ public class ItemStateHandler : MonoBehaviour
         if (ItemHandSate == ItemHandState.InHand)
         {
             PocketParent = null;
+            
+            if (CurrentPocket != null)
+                CurrentPocket.ClosePocketAfterGrab();
+            
             CurrentPocket = null;
         }
     }
