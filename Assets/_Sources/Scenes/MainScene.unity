@@ -5176,6 +5176,7 @@ GameObject:
   - component: {fileID: 102098208}
   - component: {fileID: 102098207}
   - component: {fileID: 102098206}
+  - component: {fileID: 102098211}
   - component: {fileID: 102098212}
   m_Layer: 6
   m_Name: Orb
@@ -5404,6 +5405,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102098204}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &102098211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102098204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199ddd07d36a1fe49bf4bbd058d41c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inPocketSize: {x: 0.05, y: 0.05, z: 0.05}
+  Name: Orb
+  CurrentDirectInteractor: {fileID: 0}
+  GrabInteractable: {fileID: 0}
 --- !u!114 &102098212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5413,11 +5430,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 102098204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaf5ec4e9d3b8f849804350b7eff49b6, type: 3}
+  m_Script: {fileID: 11500000, guid: cd2075ffb7118434db0a752d2717fef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: MagicOrb
-  CurrentTridderCollider: {fileID: 0}
+  PocketParent: {fileID: 0}
+  CurrentPocket: {fileID: 0}
+  GrabInteractable: {fileID: 0}
+  ItemHandSate: 0
+  ItemPocketState: 0
 --- !u!1 &121738215
 GameObject:
   m_ObjectHideFlags: 0
@@ -12080,7 +12100,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452176339}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.0638585, y: 2.5961452, z: 4.7108755}
@@ -12134,7 +12154,7 @@ MonoBehaviour:
   IsCompleted: 0
   Award: {fileID: 469667803}
   _box: {fileID: 7639466591761920357}
-  _item: {fileID: 102098212}
+  _item: {fileID: 102098211}
 --- !u!114 &469667803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13024,7 +13044,7 @@ MonoBehaviour:
   IsCompleted: 0
   Award: {fileID: 0}
   _box: {fileID: 0}
-  _item: {fileID: 102098212}
+  _item: {fileID: 0}
 --- !u!1 &856626857
 GameObject:
   m_ObjectHideFlags: 0
@@ -13884,7 +13904,7 @@ MonoBehaviour:
   IsCompleted: 0
   Award: {fileID: 1256159495}
   _box: {fileID: 3719877086119319422}
-  _item: {fileID: 102098212}
+  _item: {fileID: 102098211}
 --- !u!1 &1267306644
 GameObject:
   m_ObjectHideFlags: 0
@@ -19135,7 +19155,7 @@ MonoBehaviour:
   IsCompleted: 0
   Award: {fileID: 1456900658}
   _box: {fileID: 8322465654369329397}
-  _item: {fileID: 102098212}
+  _item: {fileID: 102098211}
 --- !u!114 &1456900658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20370,6 +20390,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d209be13548e70947bc39053977ce977, type: 3}
   m_PrefabInstance: {fileID: 259465664}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1951499207 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 982289530603203437, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
+  m_PrefabInstance: {fileID: 982289530842841632}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1956731373 stripped
 GameObject:
@@ -21891,6 +21916,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 982289530771709973, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
+      propertyPath: m_Radius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 982289530771709973, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
       propertyPath: m_SlopeLimit
       value: 5
       objectReference: {fileID: 0}
@@ -21912,7 +21941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 982289531315912413, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 7159
+      value: 31735
       objectReference: {fileID: 0}
     - target: {fileID: 982289531439947654, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
       propertyPath: m_IsActive
@@ -21938,6 +21967,22 @@ PrefabInstance:
       propertyPath: m_MoveSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5376212760312994764, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6690750399081929885, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6690750399081929885, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6690750399081929885, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 7277040705772925053, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
       propertyPath: m_EnableCollision
       value: 1
@@ -21946,6 +21991,10 @@ PrefabInstance:
       propertyPath: m_AutoConfigureConnectedAnchor
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8786353555906480317, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
+      propertyPath: _targetLookRotation
+      value: 
+      objectReference: {fileID: 1951499207}
     m_RemovedComponents:
     - {fileID: 4494232505336770642, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5137a8fe5c1d74044bcc05806128e873, type: 3}

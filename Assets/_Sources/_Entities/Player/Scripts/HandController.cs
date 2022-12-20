@@ -11,6 +11,7 @@ public class HandController : MonoBehaviour
     [SerializeField] private Animator _animator;
     
     private VRInputSystem _vrInputSystem;
+    private XRDirectInteractor _directInteractor;
     
     public bool IsReadyToGrab;
     public bool Grab;
@@ -19,6 +20,7 @@ public class HandController : MonoBehaviour
     private void Awake()
     {
         _vrInputSystem = FindObjectOfType<VRInputSystem>();
+        _directInteractor = GetComponent<XRDirectInteractor>();
     }
 
     private void Update()
@@ -51,6 +53,11 @@ public class HandController : MonoBehaviour
             IsReadyToPush = true;
             _animator.SetBool("ReadyToPush", true);
         }
+
+        // if (other.TryGetComponent(out Pocket pocket))
+        // {
+        //     Debug.Log("!!!!!!!!!!!!!!!! " + _directInteractor.interactablesSelected[0]);
+        // }
     }
     
     private void OnTriggerExit(Collider other)
