@@ -23,11 +23,11 @@ public class ItemStateHandler : MonoBehaviour
 {
     private bool _isDropped;
     private bool _isBeTouched;
-    private bool _isNearPocket;
     private bool _isUncollapsed;
     private Collider _collider;
     private Vector3 _normalSize;
 
+    public bool IsNearPocket;
     public Transform PocketParent;
     public Pocket CurrentPocket;
     public XRGrabInteractable GrabInteractable;
@@ -56,23 +56,7 @@ public class ItemStateHandler : MonoBehaviour
         SetPocketSate();
         CheckCollapsedState();
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out Pocket pocket))
-        {
-            _isNearPocket = true;
-            CurrentPocket = pocket;
-        }
-    }
     
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out Pocket pocket))
-        {
-            _isNearPocket = false;
-        }
-    }
     
     private void SetHandState()
     {
@@ -93,11 +77,11 @@ public class ItemStateHandler : MonoBehaviour
 
     private void SetPocketSate()
     {
-        if (!_isNearPocket && PocketParent == null)
+        if (!IsNearPocket && PocketParent == null)
         {
             ItemPocketState = ItemPocketState.OutPocket;
         }
-        else if (_isNearPocket && ItemHandSate == ItemHandState.InHand )
+        else if (IsNearPocket && ItemHandSate == ItemHandState.InHand )
         {
             ItemPocketState = ItemPocketState.NearPocket;
         }
@@ -128,9 +112,9 @@ public class ItemStateHandler : MonoBehaviour
 
     private void TryGetParent()
     {
-        if (_isNearPocket && _isDropped)
+        if (IsNearPocket && _isDropped)
         {
-            PocketParent = CurrentPocket.FirstSocket;
+            PocketParent = CurrentPocket.GetSocket();
 
             if (!CurrentPocket.IsOpen)
             {

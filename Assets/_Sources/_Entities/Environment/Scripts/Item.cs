@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
 {
     [SerializeField] private Vector3 _inPocketSize;
     private Rigidbody _rigidbody;
-    private ItemStateHandler _itemStateHandler;
+    protected ItemStateHandler _itemStateHandler;
 
     public string Name;
     public XRDirectInteractor CurrentDirectInteractor;
