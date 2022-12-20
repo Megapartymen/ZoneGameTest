@@ -22533,6 +22533,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1334009579}
     m_Modifications:
+    - target: {fileID: 6875593028965588247, guid: 34161645ea3183a44ad559b381129ae9, type: 3}
+      propertyPath: m_Radius
+      value: 0.042
+      objectReference: {fileID: 0}
     - target: {fileID: 6875593028965588265, guid: 34161645ea3183a44ad559b381129ae9, type: 3}
       propertyPath: m_InteractionManager
       value: 
@@ -22540,6 +22544,18 @@ PrefabInstance:
     - target: {fileID: 6875593028965588266, guid: 34161645ea3183a44ad559b381129ae9, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875593028965588266, guid: 34161645ea3183a44ad559b381129ae9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875593028965588266, guid: 34161645ea3183a44ad559b381129ae9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6875593028965588266, guid: 34161645ea3183a44ad559b381129ae9, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 6875593028965588266, guid: 34161645ea3183a44ad559b381129ae9, type: 3}
       propertyPath: m_LocalPosition.x
