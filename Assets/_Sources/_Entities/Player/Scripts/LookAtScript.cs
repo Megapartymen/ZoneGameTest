@@ -9,7 +9,9 @@ public class LookAtScript : MonoBehaviour
 
     private void Update()
     {
-        if (Target != null)
+        if (Target == null)
+            transform.LookAt(Camera.main.transform);
+        else
             transform.LookAt(Target);
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropSphereToBox : QuestTask
+public class DropSphereToBoxTask : QuestTask
 {
     [SerializeField] private Box _box;
     [SerializeField] private Item _item;
@@ -41,11 +41,15 @@ public class DropSphereToBox : QuestTask
 
     public override void ActionTaskEnd()
     {
-        IsCompleted = true;
-
-        for (int i = 0; i < Award.Length; i++)
+        if (!IsCompleted)
         {
-            Award[i].GetAward();
+            for (int i = 0; i < Award.Length; i++)
+            {
+                Award[i].GetAward();
+            }
+        
+            if (!IsCycled)
+                IsCompleted = true;
         }
     }
 }

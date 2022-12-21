@@ -7,6 +7,7 @@ public abstract class QuestTask : MonoBehaviour
 {
     public string TaskName;
     public bool IsCompleted;
+    public bool IsCycled;
     public TaskAward[] Award;
     
     public Action<QuestTask> OnTaskCompleted;
