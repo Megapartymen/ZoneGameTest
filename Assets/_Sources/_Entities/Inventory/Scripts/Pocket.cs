@@ -93,6 +93,7 @@ public class Pocket : MonoBehaviour
     {
         OnPocketOpen?.Invoke();
         IsOpen = true;
+        _vrInputSystem.SendHapticImpulse(0.2f, 0.05f, VRController.Left);
         _inventoryCrystal.CrystalShine.Play();
         _targetPocketHUDposition.Correction = _openCorrection;
         _pocketHUD.DOScale(_openScale, 0.5f);
@@ -102,6 +103,7 @@ public class Pocket : MonoBehaviour
     {
         OnPocketClosed?.Invoke();
         IsOpen = false;
+        _vrInputSystem.SendHapticImpulse(0.2f, 0.05f, VRController.Left);
         _inventoryCrystal.CrystalShine.Stop();
         _targetPocketHUDposition.Correction = _closedCorrection;
         _pocketHUD.DOScale(_closedScale, 0.5f);
