@@ -42,6 +42,10 @@ public class DropSphereToBox : QuestTask
     public override void ActionTaskEnd()
     {
         IsCompleted = true;
-        Award.GetAward();
+
+        for (int i = 0; i < Award.Length; i++)
+        {
+            Award[i].GetAward();
+        }
     }
 }

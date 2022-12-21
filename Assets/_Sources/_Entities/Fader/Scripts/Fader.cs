@@ -30,7 +30,7 @@ public class Fader : MonoBehaviour
 
     private void Start()
     {
-        FadeOut();
+        FadeOut(5);
     }
 
     private void ApplyStartFaderState()

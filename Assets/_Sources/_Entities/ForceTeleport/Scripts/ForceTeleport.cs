@@ -28,7 +28,7 @@ public class ForceTeleport : MonoBehaviour
 
     private IEnumerator SetNewPlayerPositionCoroutine(Vector3 position, bool isNeedFadeOut = true)
     {
-        float fadeTime = 0.3f;
+        float fadeTime = 0.5f;
         _fader.FadeIn(fadeTime);
         yield return new WaitForSeconds(fadeTime);
         _player.position = position;
