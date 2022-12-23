@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GoToAreaTask : QuestTask
 {
-    [SerializeField] private Area _area;
+    [SerializeField] private TriggerArea triggerArea;
     
     private QuestSystem _questSystem;
 
@@ -15,12 +15,12 @@ public class GoToAreaTask : QuestTask
 
     private void OnEnable()
     {
-        _area.OnPlayerInArea += ActionTaskEnd;
+        triggerArea.OnPlayerInArea += ActionTaskEnd;
     }
 
     private void OnDisable()
     {
-        _area.OnPlayerInArea += ActionTaskEnd;
+        triggerArea.OnPlayerInArea += ActionTaskEnd;
     }
 
 

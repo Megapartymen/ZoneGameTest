@@ -8,8 +8,6 @@ using DG.Tweening;
 [RequireComponent(typeof(ItemStateHandler))]
 public class Item : MonoBehaviour
 {
-    [SerializeField] private Vector3 _inPocketSize;
-    private Rigidbody _rigidbody;
     protected ItemStateHandler _itemStateHandler;
 
     public string Name;
@@ -18,7 +16,6 @@ public class Item : MonoBehaviour
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
         GrabInteractable = GetComponent<XRGrabInteractable>();
         _itemStateHandler = GetComponent<ItemStateHandler>();
     }

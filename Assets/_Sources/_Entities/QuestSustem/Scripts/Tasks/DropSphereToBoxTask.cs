@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DropSphereToBoxTask : QuestTask
 {
-    [SerializeField] private Box _box;
+    [SerializeField] private TriggerBox triggerBox;
     [SerializeField] private Item _item;
 
     private QuestSystem _questSystem;
@@ -17,12 +17,12 @@ public class DropSphereToBoxTask : QuestTask
 
     private void OnEnable()
     {
-        _box.OnInBoxDropped += CheckItemInBox;
+        triggerBox.OnInBoxDropped += CheckItemInBox;
     }
 
     private void OnDisable()
     {
-        _box.OnInBoxDropped += CheckItemInBox;
+        triggerBox.OnInBoxDropped += CheckItemInBox;
     }
 
     private void CheckItemInBox(Item item)
